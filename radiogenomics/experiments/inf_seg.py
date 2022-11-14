@@ -54,14 +54,19 @@ class Inference:
         print("Running on GPU:", torch.cuda.current_device())
 
         # Initialize model
-        self.model = MODELS[model_class](
-            spatial_dims=3,
-            in_channels=1,
-            out_channels=1,
-            channels=[64, 128, 256, 512, 512],
-            strides=[2, 2, 2, 2],
-            ).to(self.device)
-        print("Model {} loaded".format(model_class))
+        try:
+            self.model = MODELS[model_class](
+                spatial_dims=3,
+                in_channels=1,
+                out_channels=1,
+                channels=[64, 128, 256, 512, 512],
+                strides=[2, 2, 2, 2],
+                ).to(self.device)
+            print("Model {} loaded".format(model_class))
+        except:
+            print("Model {} not found".format(model_class))
+            print(sorted(MODELS))
+            exit()
 
         # Load weights
         self.model.load_state_dict(torch.load(self.weights_path))
