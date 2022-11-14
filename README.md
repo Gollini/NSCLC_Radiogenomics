@@ -51,7 +51,7 @@ The proposed “Recurrence-Attention Segmentor” (RA-Seg) generates a tumor mas
 ![alt text](figures/arch_outline.PNG "Radiogenomics pipeline")
 
 ## Segmentation Inference. Lung tumor segmentation mask.
-Segmentation Results:
+Segmentation results:
 * Trained on MSD. Average DSC 67.24 (5 fold CV) and 68.65 on RADGEN testset.
 * Trained on RAD. Average DSC 72.36 (5 fold CV) and 66.11 on RADGEN testset.
 * Trained on MSD+RAD. Average DSC 71.42 (5 fold CV) and 73.54 on RADGEN testset.
@@ -61,7 +61,7 @@ Available pretrained weight:
 * Trained on RADGEN with pretrained weights (MSD+RAD).
 
 
-Inference command will generate tumor mask for preprocessed data available on DATA_PATH and extract the high-level raw features (NO dimensionality reduction). File structure:
+Inference command will save tumor mask for preprocessed data available on DATA_PATH and extract the high-level raw features (NO dimensionality reduction). File structure:
 ```
 DATA PATH
 |____ CASE1
@@ -88,14 +88,30 @@ Command Example:
 ```
 cd radiogenomics # Make sure you are on the right directory.
 
-python main.py inference DATA_PATH WEIGHTS_PATH MODEL
-python main.py inference ./data/radgen/processed/lungs_roi ./weights/radgen_finetune.pt RA_Seg
+python main.py inf_seg DATA_PATH WEIGHTS_PATH MODEL
+python main.py inf_seg ./data/radgen/processed/lungs_roi ./weights/radgen_finetune.pt RA_Seg
 ```
 ![alt text](figures/final_model_isbi.png "Radiogenomics prediction example")
 
 ## Classification. EGFR mutation status classification.
-Highl-level deep features are extracted from the *Decoder 2* step output. Then undergo preprocessing and LDA dimensionality reduction.
+Highl-level deep features are extracted from the *Decoder 2* step output. Then undergo preprocessing (mean and flatten operation) with LDA dimensionality reduction.
+
+Classification results:
 * Quadratic discriminant analysis (QDA). Average ROC-AUC 0.90 (5 fold CV)
 * Decision Tree (DT). Average ROC-AUC 0.91 (5 fold CV)
 * Random Forest (RF). Average ROC-AUC 0.93 (5 fold CV)
 * C-Support Vector Classification (SVC). Average ROC-AUC 0.83 (5 fold CV)
+
+Classifiers available as SAV files:
+* QDA
+* DT
+* RF
+* SVC
+
+Inference command will return the prediction of EGFR mutation status. Class-negative corresponds to "Wildtype" and Class-positive corresponds to "Mutated".
+```
+cd radiogenomics # Make sure you are on the right directory.
+
+python main.py inf_class DATA_PATH SAVED_MODELS_PATH MODEL
+python main.py inf_class ./data/radgen/processed/lungs_roi ./classifiers qda
+```
