@@ -12,4 +12,4 @@ torchio
 git+https://github.com/JoHof/lungmask
 tensorboard
 setuptools
-sklearn
+scikit-learn

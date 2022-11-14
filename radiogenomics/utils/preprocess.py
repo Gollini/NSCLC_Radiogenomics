@@ -66,7 +66,6 @@ class Preprocess:
 
             self.extract_lungs(patient, ct, seg[None, :, :, :])
 
-        self.tumor_bbx(self.dataoutput+'/full_ct')
         self.tumor_bbx(self.dataoutput+'/lungs_roi')
         return
 
@@ -116,7 +115,6 @@ class Preprocess:
                 self.extract_lungs(patient, patient_ct, patient_seg)
             break
 
-        self.tumor_bbx(self.dataoutput+'/full_ct')
         self.tumor_bbx(self.dataoutput+'/lungs_roi')
 
     def radiogenomics(self):
@@ -146,7 +144,6 @@ class Preprocess:
             else:
                 self.extract_lungs(patient, patient_ct)
                 continue
-        self.tumor_bbx(self.dataoutput+'/full_ct')
         self.tumor_bbx(self.dataoutput+'/lungs_roi')
 
     def extract_tumor(self, patient, ct, seg=None):
@@ -245,7 +242,7 @@ class Preprocess:
         return image
 
     def tumor_bbx(self, outpath):
-        print('Generating tumor bbx ', self.dataset)
+        print('Generating tumor bbx', self.dataset)
         print(outpath)
     
         patients_list = sorted(os.listdir(outpath))
