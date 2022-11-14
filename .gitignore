@@ -1,7 +1,12 @@
+*.ipynb
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+
+radiogenomics/data/msd/Task06_Lung
+radiogenomics/data/rad/NSCLC-Radiomics
+radiogenomics/data/radgen/NSCLC-Radiogenomics
 
 # C extensions
 *.so
