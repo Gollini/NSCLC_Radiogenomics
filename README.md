@@ -1,6 +1,6 @@
 # A Radiogenomics Pipeline for Lung Nodules Segmentation and Prediction of EGFR Mutation Status from CT Scans.
 
-This is the official repository for the **Preprint** "A Radiogenomics Pipeline for Lung Nodules Segmentation and Prediction of EGFR Mutation Status from CT Scans".
+This is the official repository for the **Preprint** "A Radiogenomics Pipeline for Lung Nodules Segmentation and Prediction of EGFR Mutation Status from CT Scans". [ArXiv](https://arxiv.org/abs/2211.06620)
 
 **Abstract**
 
