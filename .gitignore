@@ -4,6 +4,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+playground_utils
 radiogenomics/data/msd/Task06_Lung
 radiogenomics/data/rad/NSCLC-Radiomics
 radiogenomics/data/radgen/NSCLC-Radiogenomics
